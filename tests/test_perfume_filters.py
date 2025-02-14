@@ -29,15 +29,15 @@ def test_filter_perfume(setup, make, for_who, Verantwortung):
         perfume.select_make_filters(make_filters)
 
 
-        # if for_who == "Yes":
-        #     perfume.apply_for_who_filter()
-        #     logger.info("Applied 'Für Wen' filter")
-        #
-        # if responsibility == "Yes":
-        #     perfume.apply_responsibility_filter()
-        #     logger.info("Applied 'Verantwortung' filter")
+        if for_who == "Yes":
+            perfume.apply_for_who_filter()
+            logger.info("Applied 'Für Wen' filter")
 
-        # Additional validation can be added here to verify results
+        if Verantwortung == "Yes":
+            perfume.apply_responsibility_filter()
+            logger.info("Applied 'Verantwortung' filter")
+
+
 
     except Exception as e:
         logger.error(f"Test Failed: {e}")
