@@ -7,8 +7,8 @@ from utils.logger import Logger
 
 logger = Logger.setup_logger()
 
-@pytest.mark.parametrize("make, for_who, Verantwortung", ExcelReader.get_test_data("./test_data/test_data.xlsx", "Filters"))
-def test_filter_perfume(setup, make, for_who, Verantwortung):
+@pytest.mark.parametrize("make, for_who, verantwortung", ExcelReader.get_test_data("./test_data/test_data.xlsx", "Filters"))
+def test_filter_perfume(setup, make, for_who, verantwortung):
     """
     Test applying different perfume filters using data-driven testing.
     """
@@ -19,13 +19,13 @@ def test_filter_perfume(setup, make, for_who, Verantwortung):
     try:
         logger.info("Test Started: Navigating to Perfume Page")
 
-        # Accept cookies and navigate to perfume section
+
         home.accept_cookies()
         home.navigate_to_perfume()
         logger.info("Navigated to Perfume Menu Successfully")
-        print(f"make: {make}, for_who: {for_who}, responsibility: {Verantwortung}")
+        print(make)
         make_filters = make.split(",")
-
+        logger.info(make_filters)
         perfume.select_make_filters(make_filters)
 
 
@@ -33,7 +33,7 @@ def test_filter_perfume(setup, make, for_who, Verantwortung):
             perfume.apply_for_who_filter()
             logger.info("Applied 'Für Wen' filter")
 
-        if Verantwortung == "Yes":
+        if verantwortung == "Yes":
             perfume.apply_responsibility_filter()
             logger.info("Applied 'Verantwortung' filter")
 
